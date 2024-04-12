@@ -13,9 +13,13 @@ public class Account {
     @Column(nullable = false)
     private String description;
 
-    @ManyToOne()
+    @ManyToOne
     @JoinColumn(name = "user_id")
     private User user;
+
+    @OneToOne(mappedBy = "account")
+    @PrimaryKeyJoinColumn
+    private BillingAddress billingAddress;
 
     public Account() {
     }
