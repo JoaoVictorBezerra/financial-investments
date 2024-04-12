@@ -1,6 +1,10 @@
-package tech.projects.financialinvestments.entity;
+package tech.projects.financialinvestments.entity.account;
 
 import jakarta.persistence.*;
+import tech.projects.financialinvestments.entity.BillingAddress;
+import tech.projects.financialinvestments.entity.User;
+
+import java.util.List;
 
 @Entity
 @Table(name = "accounts")
@@ -20,6 +24,9 @@ public class Account {
     @OneToOne(mappedBy = "account")
     @PrimaryKeyJoinColumn
     private BillingAddress billingAddress;
+
+    @OneToMany(mappedBy = "account")
+    private List<AccountStock> accountStocks;
 
     public Account() {
     }

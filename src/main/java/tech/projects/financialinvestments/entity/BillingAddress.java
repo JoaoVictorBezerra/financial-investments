@@ -1,6 +1,7 @@
 package tech.projects.financialinvestments.entity;
 
 import jakarta.persistence.*;
+import tech.projects.financialinvestments.entity.account.Account;
 
 @Entity
 @Table(name = "billing_address")

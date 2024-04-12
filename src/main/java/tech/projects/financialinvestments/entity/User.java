@@ -3,6 +3,7 @@ package tech.projects.financialinvestments.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import tech.projects.financialinvestments.entity.account.Account;
 
 import java.time.Instant;
 import java.util.List;
