@@ -3,30 +3,25 @@ package tech.projects.financialinvestments.entity;
 import jakarta.persistence.*;
 
 @Entity
-@Table(name = "accounts")
-public class Account {
+@Table(name = "stocks")
+public class Stock {
     @Id
-    @GeneratedValue(strategy = GenerationType.UUID)
     @Column(nullable = false)
     private String id;
 
     @Column(nullable = false)
     private String description;
 
-    @ManyToOne
-    @JoinColumn(name = "user_id")
-    private User user;
+    @Column(nullable = false)
+    private String ticker;
 
-    @OneToOne(mappedBy = "account")
-    @PrimaryKeyJoinColumn
-    private BillingAddress billingAddress;
-
-    public Account() {
+    public Stock() {
     }
 
-    public Account(String id, String description) {
+    public Stock(String id, String description, String ticker) {
         this.id = id;
         this.description = description;
+        this.ticker = ticker;
     }
 
     public String getId() {
@@ -45,11 +40,11 @@ public class Account {
         this.description = description;
     }
 
-    public User getUser() {
-        return user;
+    public String getTicker() {
+        return ticker;
     }
 
-    public void setUser(User user) {
-        this.user = user;
+    public void setTicker(String ticker) {
+        this.ticker = ticker;
     }
 }
