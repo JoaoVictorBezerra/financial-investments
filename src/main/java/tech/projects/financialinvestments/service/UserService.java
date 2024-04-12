@@ -53,7 +53,10 @@ public class UserService {
     }
 
     public void deleteUserById(String userId) {
-        User userToBeDeleted = getUserById(userId);
-        userRepository.delete(userToBeDeleted);
+        boolean existsById = userRepository.existsById(userId);
+        if(!existsById) {
+            throw new RuntimeException("User not found");
+        }
+        userRepository.deleteById(userId);
     }
 }
