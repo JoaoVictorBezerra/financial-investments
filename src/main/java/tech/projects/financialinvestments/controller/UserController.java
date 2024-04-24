@@ -2,6 +2,8 @@ package tech.projects.financialinvestments.controller;
 
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
+import tech.projects.financialinvestments.dto.AccountResponseDTO;
+import tech.projects.financialinvestments.dto.CreateAccountDTO;
 import tech.projects.financialinvestments.dto.CreateUserDTO;
 import tech.projects.financialinvestments.dto.UpdateUserDTO;
 import tech.projects.financialinvestments.entity.User;
@@ -48,4 +50,17 @@ public class UserController {
         userService.deleteUserById(userId);
         return ResponseEntity.noContent().build();
     }
+
+    @PostMapping("/{userId}/account")
+    public ResponseEntity<Void> createUserAccount(@PathVariable("userId") String userId, @RequestBody CreateAccountDTO createAccountDTO) {
+       userService.createUserAccount(userId, createAccountDTO);
+       return ResponseEntity.ok().build();
+    }
+
+    @GetMapping("/{userId}/account")
+    public ResponseEntity<List<AccountResponseDTO>> getAccountByUserId(@PathVariable("userId") String userId) {
+        List<AccountResponseDTO> accountList = userService.listAccountsById(userId);
+        return ResponseEntity.ok().body(accountList);
+    }
+
 }

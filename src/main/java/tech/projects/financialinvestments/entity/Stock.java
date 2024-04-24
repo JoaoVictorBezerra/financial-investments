@@ -12,16 +12,12 @@ public class Stock {
     @Column(nullable = false)
     private String description;
 
-    @Column(nullable = false)
-    private String ticker;
-
     public Stock() {
     }
 
-    public Stock(String id, String description, String ticker) {
+    public Stock(String id, String description) {
         this.id = id;
         this.description = description;
-        this.ticker = ticker;
     }
 
     public String getId() {
@@ -38,13 +34,5 @@ public class Stock {
 
     public void setDescription(String description) {
         this.description = description;
-    }
-
-    public String getTicker() {
-        return ticker;
-    }
-
-    public void setTicker(String ticker) {
-        this.ticker = ticker;
     }
 }
