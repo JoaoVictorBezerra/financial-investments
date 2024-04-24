@@ -3,20 +3,31 @@ package tech.projects.financialinvestments.entity;
 import jakarta.persistence.*;
 import org.hibernate.annotations.CreationTimestamp;
 import org.hibernate.annotations.UpdateTimestamp;
+import tech.projects.financialinvestments.entity.account.Account;
 
 import java.time.Instant;
+import java.util.List;
 
 @Entity
 @Table(name = "users")
 public class User {
     @Id
+    @Column(nullable = false)
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
-
+    @Column(nullable = false)
     private String username;
-
+    @Column(nullable = false)
     private String email;
+    @Column(nullable = false)
     private String password;
+    @CreationTimestamp
+    private Instant createdAt;
+    @UpdateTimestamp
+    private Instant updatedAt;
+
+    @OneToMany(mappedBy = "user")
+    private List<Account> accounts;
 
     public User() {
     }
@@ -78,8 +89,11 @@ public class User {
         this.updatedAt = updatedAt;
     }
 
-    @CreationTimestamp
-    private Instant createdAt;
-    @UpdateTimestamp
-    private Instant updatedAt;
+    public List<Account> getAccounts() {
+        return accounts;
+    }
+
+    public void setAccounts(List<Account> accounts) {
+        this.accounts = accounts;
+    }
 }
